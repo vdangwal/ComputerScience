@@ -9,7 +9,7 @@ namespace arrays
         {
             Console.WriteLine("Hello World!");
             //ReverseArray(1, 2, 3, 4, 5, 6, 7, 8);
-            Console.WriteLine(EncryptString("aaaabbbccd33eeffgg"));
+            Console.WriteLine(CompressString("aaaabbbccd33eeffgg"));
         }
 
         static void ReverseArray(params int[] input)
@@ -47,7 +47,7 @@ namespace arrays
         }
 
         // Abbbccd3effgg | Ab3c2d3ef2g2
-        private static string EncryptString(string input)
+        private static string CompressString(string input)
         {
             if (string.IsNullOrEmpty(input))
                 return input;
