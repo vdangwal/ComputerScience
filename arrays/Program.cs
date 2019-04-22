@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace arrays
 {
@@ -7,8 +8,8 @@ namespace arrays
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-
-            ReverseArray(1, 2, 3, 4, 5, 6, 7, 8);
+            //ReverseArray(1, 2, 3, 4, 5, 6, 7, 8);
+            Console.WriteLine(EncryptString("aaaabbbccd33eeffgg"));
         }
 
         static void ReverseArray(params int[] input)
@@ -43,6 +44,41 @@ namespace arrays
             int temp = input[frontIndex];
             input[frontIndex] = input[backIndex];
             input[backIndex] = temp;
+        }
+
+        // Abbbccd3effgg | Ab3c2d3ef2g2
+        private static string EncryptString(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+                return input;
+
+            char lastChar = input[0];
+
+            int currIndex = 1;
+            int totalCount = 1;
+            StringBuilder encString = new StringBuilder(input.Length);
+            // Abbbccd3effgg | Ab3c2d3ef2g2
+
+            while (currIndex < input.Length)
+            {
+                if (lastChar == input[currIndex])
+                {
+                    totalCount++;
+
+                }
+                else
+                {
+                    encString.Append($"{lastChar}{totalCount}");
+                    System.Console.WriteLine($"Current String: {lastChar}{totalCount}");
+                    totalCount = 1;
+                    lastChar = input[currIndex];
+                }
+
+                currIndex++;
+                if (currIndex == input.Length)
+                    encString.Append($"{lastChar}{totalCount}");
+            }
+            return encString.Length < input.Length ? encString.ToString() : input;
         }
     }
 }
