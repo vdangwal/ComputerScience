@@ -9,7 +9,8 @@ namespace arrays
         {
             Console.WriteLine("Hello World!");
             //ReverseArray(1, 2, 3, 4, 5, 6, 7, 8);
-            Console.WriteLine(CompressString("aaaabbbccd33eeffgg"));
+            //Console.WriteLine(CompressString("aaaabbbccd33eeffgg"));
+            System.Console.WriteLine($"{IsStringHasUniqueCharacters("abcdee")}");
         }
 
         static void ReverseArray(params int[] input)
@@ -79,6 +80,19 @@ namespace arrays
                     encString.Append($"{lastChar}{totalCount}");
             }
             return encString.Length < input.Length ? encString.ToString() : input;
+        }
+
+        static bool IsStringHasUniqueCharacters(string input)
+        {
+            bool[] buffer = new bool[128];
+            for (int i = 0; i < input.Length; i++)
+            {
+                int val = input[i];
+                if (buffer[val])
+                    return false;
+                buffer[val] = true;
+            }
+            return true;
         }
     }
 }
